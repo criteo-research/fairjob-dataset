@@ -1,0 +1,7 @@
+.DS_Store
+*.pdf
+__pycache__/
+*.csv
+*.csv.gz
+*.model
+*.txt
