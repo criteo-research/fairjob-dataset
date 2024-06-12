@@ -1,5 +1,9 @@
 # CRITEO FAIRNESS IN JOB ADS DATASET
 
+TODO:
+- Make script/explain how to download data
+- Add code for plots and tables
+
 ## Summary
 
 This dataset is released by Criteo to foster research and innovation on Fairness in Advertising and AI systems in general. 
@@ -78,7 +82,7 @@ python example_simulations_LR.py --lr_fair=1 --fair_frac=1.0 --name=EXAMPLE
 You can also in this case check all options available for `example_simulations_LR.py` with the flag `--help`.
 
 ## Paper results
-In order to reproduce the results reported in the paper, please refer to the executions listed in `paper_results.sh`
+In order to reproduce the results reported in the paper, please refer to the executions listed in `paper_results.sh` and to the notebook `dataset_analysis.ipynb` for the post-processing of the results.
 
 ## Citation
 
