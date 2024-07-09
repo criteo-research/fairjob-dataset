@@ -1,62 +1,25 @@
-# CRITEO FAIRNESS IN JOB ADS DATASET
+<!-- Copyright 2024 Mariia Vladimirova, Federico Pavone, Eustache Diemert
 
-TODO:
-- Make script/explain how to download data
-- Add code for plots and tables
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-## Summary
+    http://www.apache.org/licenses/LICENSE-2.0
 
-This dataset is released by Criteo to foster research and innovation on Fairness in Advertising and AI systems in general. 
-See also [Criteo pledge for Fairness in Advertising](https://fr.linkedin.com/posts/diarmuid-gill_advertisingfairness-activity-6945003669964660736-_7Mu).
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
 
-The dataset is intended to learn click predictions models and evaluate by how much their predictions are biased between different gender groups. 
+# FairJob: A Real-World Dataset for Fairness in Online Systems
 
-## License
+Official repository of the paper *FairJob: A Real-World Dataset for Fairness in Online Systems* (Mariia Vladimirova, Federico Pavone, Eustache Diemert) available on ArXiv (https://arxiv.org/abs/2407.03059).
 
-The data is released under the [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) 4.0 license. 
-You are free to Share and Adapt this data provided that you respect the Attribution, NonCommercial and ShareAlike conditions. 
-Please read carefully the full license before using. 
+## Data
+The dataset FairJob and its detailed description is available at https://huggingface.co/datasets/criteo/FairJob.
 
-## Data description
-- 410,653 rows
-  - each row represents a job ad
-- features
-  - `cat0` to `cat13`: categorical features of the ad, the publisher and user (categorical) - meaning undisclosed 
-  - `num14` to `num48`: numerical features of the ad, the publisher and user - meaning undisclosed
-- labels
-  - `click`: was the ad clicked (binary)
-  - `protected_attribute`: proxy for user gender (binary) - see below for more thorough explanation
-  - `senior`: was the job offer for a senior position (binary)
-
-### Data statistics
-
-| dimension           | average |
-|---------------------|---------|
-| click               | 0.077   |
-| protected attribute | 0.500   |
-| senior              | 0.704   |
-
-### Protected attribute
-
-As Criteo does not have access to user demographics we report a proxy of gender as protected attribute. 
-This proxy is reported as binary for simplicity yet we acknowledge gender is not necessarily binary.
-
-The value of the proxy is computed as the majority of gender attributes of products seen in the user timeline.
-Product having a gender attribute are typically fashion and clothing. 
-We acknowledge that this proxy does not necessarily represent how users relate to a given gender yet we believe it to be a realistic approximation for research purposes.
-
-We encourage research in Fairness defined with respect to other attributes as well.
-
-## Metrics
-
-We strongly recommend to measure prediction quality using Negative Log-likelihood (lower is better).
-
-We recommend to measure Fairness of ads by Demographic Parity conditioned on Senior job offers:
-
-$$ E[f(x) | protected\_attribute=1, senior=1] - E[f(x) | protected\_attribute=0, senior=1] $$
-
-This corresponds to the average difference in predictions for senior job opportunities between the two gender groups (lower is better).
-Intuitively, when this metric is low it means we are not biased towards presenting more senior job opportunities (e.g. Director of XXX) to one gender vs the other.
+Download the data in the subfolder `\data` before running the code in the repository.
 
 ## Code structure and examples
 
@@ -81,18 +44,20 @@ python example_simulations_LR.py --lr_fair=1 --fair_frac=1.0 --name=EXAMPLE
 
 You can also in this case check all options available for `example_simulations_LR.py` with the flag `--help`.
 
-## Paper results
+### Paper results
 In order to reproduce the results reported in the paper, please refer to the executions listed in `paper_results.sh` and to the notebook `dataset_analysis.ipynb` for the post-processing of the results.
 
-## Citation
+## A Note on License
+This code is open-source. We share most of it under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
 
+## Citation
 If you use the dataset in your research please cite it using the following Bibtex excerpt:
 
 ```
-@misc{criteo_fairness_dataset
-author = {CRITEO},
-title = {CRITEO FAIRNESS IN JOB ADS DATASET},
-year = {2024},
-howpublished= {\url{http://XXX}}
+@article{vladimirova2024fairjob,
+  title={{FairJob: A Real-World Dataset for Fairness in Online Systems}},
+  author={Vladimirova, Mariia and Pavone, Federico and Diemert, Eustache},
+  journal={arXiv preprint arXiv:2407.03059},
+  year={2024}
 }
 ```
